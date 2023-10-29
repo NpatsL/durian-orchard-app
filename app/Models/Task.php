@@ -16,8 +16,8 @@ class Task extends Model
         return $this->belongsTo(Plan::class);
     }
 
-    public function employees(): BelongsToMany
+    public function users(): BelongsToMany
     {
-        return $this->belongsToMany(Employee::class);
+        return $this->belongsToMany(User::class);
     }
 }
