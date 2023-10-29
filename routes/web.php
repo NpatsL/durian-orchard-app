@@ -1,5 +1,16 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PlanController;
+use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\IncomeController;
+use App\Http\Controllers\LotMaterialController;
+use App\Http\Controllers\TaskController;
+//use App\Http\Controllers\FinanceController;
+// use App\Models\Employee;
+use App\Models\Material;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +24,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
+Route::get('welcome', [PlanController::class, 'index']);
+
+Route::get('/plans', [PlanController::class, 'index'])
+    ->name('plans.index');
+
+Route::get('/materials', [MaterialController::class, 'index'])
+    ->name('materials.index');
+ 
+
+
+// Route::get('/users', function () {
+//     return view('users.index');
+// })->name('users.index');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/materials', [UserController::class, 'index'])->name('materials.index');
+Route::get('/finances', [UserController::class, 'index'])->name('finances.index');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
