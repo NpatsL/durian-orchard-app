@@ -15,15 +15,17 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Home') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
-                        {{ __('Employees') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('materials.index')" :active="request()->routeIs('materials.index')">
-                        {{ __('Materials') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('finances.index')" :active="request()->routeIs('finances.index')">
-                        {{ __('Finances') }}
-                    </x-nav-link>
+                    @if(Auth::user()->role === \App\Models\User::ROLE_ADMIN)
+                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                            {{ __('Employees') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('materials.index')" :active="request()->routeIs('materials.index')">
+                            {{ __('Materials') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('finances.index')" :active="request()->routeIs('finances.index')">
+                            {{ __('Finances') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -79,15 +81,17 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Home') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
-                {{ __('Employees') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('materials.index')" :active="request()->routeIs('materials.index')">
-                {{ __('Materials') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('finances.index')" :active="request()->routeIs('finances.index')">
-                {{ __('Finances') }}
-            </x-responsive-nav-link>
+            @if(Auth::user()->role === \App\Models\User::ROLE_ADMIN)
+                <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                    {{ __('Employees') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('materials.index')" :active="request()->routeIs('materials.index')">
+                    {{ __('Materials') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('finances.index')" :active="request()->routeIs('finances.index')">
+                    {{ __('Finances') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
