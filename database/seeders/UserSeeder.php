@@ -15,7 +15,6 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         //
-        //User::factory(10)->create();
         $user = new User();
         $user->name = 'admin';
         $user->email = 'admin@gmail.com';
@@ -36,5 +35,15 @@ class UserSeeder extends Seeder
         $user->password = Hash::make("em02");
         $user->role = User::ROLE_EMPLOYEE;
         $user->save();
+        
+        $user = new User();
+        $user->name = 'employee03';
+        $user->email = 'em03@gmail.com';
+        $user->password = Hash::make("em03");
+        $user->role = User::ROLE_EMPLOYEE;
+        $user->save();
+
+
+        User::factory(10)->create();
     }
 }

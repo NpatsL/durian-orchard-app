@@ -47,7 +47,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
-Route::get('/materials', [UserController::class, 'index'])->name('materials.index');
+Route::get('/materials', [MaterialController::class, 'index'])->name('materials.index');
 Route::get('/finances', [UserController::class, 'index'])->name('finances.index');
 
 Route::middleware('auth')->group(function () {
