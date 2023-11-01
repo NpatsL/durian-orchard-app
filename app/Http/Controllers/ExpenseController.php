@@ -13,7 +13,7 @@ class ExpenseController extends Controller
     public function index()
     {
         $expenses = Expense::all();
-        return view('finances.expense', ['expenses' => $expenses]);
+        return view('finances.expense.index', ['expenses' => $expenses]);
     }
 
     /**
@@ -21,7 +21,7 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        //
+        return view('finances.expense.create');
     }
 
     /**
@@ -45,7 +45,9 @@ class ExpenseController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $expense = Expense::find($id);
+    
+        return view('finances.expense.edit', ['expense' => $expense]);
     }
 
     /**

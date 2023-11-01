@@ -14,7 +14,7 @@ class IncomeController extends Controller
     public function index()
     {
         $incomes = Income::all();
-        return view('finances.income', ['incomes' => $incomes]);
+        return view('finances.income.index', ['incomes' => $incomes]);
     }
 
     /**
@@ -22,7 +22,7 @@ class IncomeController extends Controller
      */
     public function create()
     {
-        //
+        return view('finances.income.create');
     }
 
     /**
@@ -46,7 +46,9 @@ class IncomeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $income = Income::find($id);
+    
+        return view('finances.income.edit', ['income' => $income]);
     }
 
     /**

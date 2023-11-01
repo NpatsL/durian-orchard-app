@@ -66,15 +66,15 @@ class FinanceController extends Controller
     {
         //
     }
-    public function income()
-    {
+    // public function income()
+    // {
 
-        return view('finances.income');
-    }
+    //     return view('finances.income');
+    // }
 
-    public function expense()
-    {
+    // public function expense()
+    // {
 
-        return view('finances.expense');
-    }
+    //     return view('finances.expense');
+    // }
 }
