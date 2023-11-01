@@ -2,7 +2,8 @@
 
 @section('content') --}}
 {{-- <x-app-layout> --}}
-<x-guest-layout>
+
+<x-guest-layout >
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -58,6 +59,9 @@
             {{ __("Don't have an account?") }} <a href="{{ route('register') }}" class="underline text-indigo-600 hover:text-indigo-900">{{ __('Register here') }}</a>
         </p>
     </div> --}}
+
 </x-guest-layout>
+
 {{-- </x-app-layout> --}}
 {{-- @endsection --}}
+

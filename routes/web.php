@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\LotMaterialController;
 use App\Http\Controllers\TaskController;
@@ -48,8 +49,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/materials', [MaterialController::class, 'index'])->name('materials.index');
-Route::get('/finances', [UserController::class, 'index'])->name('finances.index');
-
+Route::get('/finances', [FinanceController::class, 'index'])->name('finances.index');
+Route::get('/finances/income', [IncomeController::class, 'index'])->name('finances.income');
+Route::get('/finances/expense', [ExpenseController::class, 'index'])->name('finances.expense');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

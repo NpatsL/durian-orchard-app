@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Income;
+use App\Models\Expense;
 
-
-class IncomeController extends Controller
+class FinanceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,9 @@ class IncomeController extends Controller
     public function index()
     {
         $incomes = Income::all();
-        return view('finances.income', ['incomes' => $incomes]);
+        $expenses = Expense::all();
+    
+        return view('finances.index', compact('incomes', 'expenses'));
     }
 
     /**
@@ -63,5 +65,16 @@ class IncomeController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function income()
+    {
+
+        return view('finances.income');
+    }
+
+    public function expense()
+    {
+
+        return view('finances.expense');
     }
 }
