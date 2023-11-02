@@ -11,12 +11,32 @@ class FinanceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $incomes = Income::all();
-        $expenses = Expense::all();
+        // $incomes = Income::all();
+        // $expenses = Expense::all();
     
-        return view('finances.index', compact('incomes', 'expenses'));
+        // return view('finances.index', compact('incomes', 'expenses'));
+         // Get the selected month from the query parameters (e.g., ?month=2023-10)
+        $selectedMonth = $request->input('month', now()->format('Y-m'));
+
+        // Filter income and expenses for the selected month
+        $incomes = Income::whereYear('date', '=', explode('-', $selectedMonth)[0])
+            ->whereMonth('date', '=', explode('-', $selectedMonth)[1])
+            ->get();
+
+        $expenses = Expense::whereYear('date', '=', explode('-', $selectedMonth)[0])
+            ->whereMonth('date', '=', explode('-', $selectedMonth)[1])
+            ->get();
+
+        // Calculate total income and total expenses for the selected month
+        $totalIncome = $incomes->sum('amount');
+        $totalExpenses = $expenses->sum('amount');
+
+        // Calculate profit (income - expenses)
+        $profit = $totalIncome - $totalExpenses;
+
+        return view('finances.index', compact('incomes', 'expenses', 'selectedMonth', 'totalIncome', 'totalExpenses', 'profit'));       
     }
 
     /**
