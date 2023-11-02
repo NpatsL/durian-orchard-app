@@ -50,16 +50,25 @@ Route::get('/dashboard', function () {
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/materials', [MaterialController::class, 'index'])->name('materials.index');
 Route::get('/finances', [FinanceController::class, 'index'])->name('finances.index');
+
 Route::get('/finances/income', [IncomeController::class, 'index'])->name('finances.income.index');
 Route::get('/finances/expense', [ExpenseController::class, 'index'])->name('finances.expense.index');
+
 Route::get('/finances/income/create', [IncomeController::class, 'create'])->name('finances.income.create');
 Route::get('/finances/expense/create', [ExpenseController::class, 'create'])->name('finances.expense.create');
+
+Route::post('finances/income', [IncomeController::class, 'store'])->name('finances.income.store');
+Route::post('finances/expense', [ExpenseController::class, 'store'])->name('finances.expense.store');
+
 Route::put('/finances/income/{income}', [IncomeController::class, 'update'])->name('finances.income.update');
 Route::put('/finances/expense/{expense}', [ExpenseController::class, 'update'])->name('finances.expense.update');
-// Route::get('/finances/income', [IncomeController::class, 'store'])->name('finances.income.index');
-// Route::resource('finances/income', IncomeController::class);
+
 Route::get('finances/income/{income}/edit', [IncomeController::class, 'edit'])->name('finances.income.edit');
 Route::get('finances/expense/{expense}/edit', [ExpenseController::class, 'edit'])->name('finances.expense.edit');
+
+Route::delete('/finances/income/{income}', [IncomeController::class, 'destroy'])->name('finances.income.destroy');
+Route::delete('/finances/expense/{expense}', [ExpenseController::class, 'destroy'])->name('finances.expense.destroy');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

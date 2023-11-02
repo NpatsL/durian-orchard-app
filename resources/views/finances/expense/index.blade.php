@@ -21,7 +21,11 @@
                     </div>
                     <div class="flex justify-end">
                         <a href="{{ route('finances.expense.edit', $expense->id) }}" class="btn btn-secondary">Edit</a>
-                        <button class="btn btn-danger ml-2">Delete</button>
+                        <form action="{{ route('finances.expense.destroy', $expense->id) }}" method="POST" class="inline">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger ml-2" onclick="return confirm('Are you sure you want to delete this expense record?')">Delete</button>
+                        </form>
                     </div>
                 </div>
             @endforeach

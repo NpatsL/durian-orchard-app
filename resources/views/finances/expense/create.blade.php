@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="container">
         <h1>Create New Expense</h1>
-        {{-- <form action="{{ route('expense.store') }}" method="POST"> --}}
+        <form action="{{ route('finances.expense.store') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="name">Name:</label>

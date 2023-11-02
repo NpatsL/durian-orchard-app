@@ -21,15 +21,42 @@ class ExpenseController extends Controller
      */
     public function create()
     {
+        // $request->validate([
+        //     'name' => ['required', 'min:4', 'max:255'],
+        // ]);
+
+        // $expense = new Expense();
+        // $expense->name = $request->name;
+        // $expense->amount = $request->amount;
+        // $expense->date = $request->date;
+        // $expense->save();
+
+        // return redirect()->route('finances.expense.index');
         return view('finances.expense.create');
+        // return view('finances.expense.create', [
+        //     'expense' => $expense
+        // ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request,Expense $expense)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'min:4', 'max:255'],
+        ]);
+
+        $expense = new Expense();
+        $expense->name = $request->name;
+        $expense->amount = $request->amount;
+        $expense->date = $request->date;
+        $expense->save();
+
+        // return redirect()->route('finances.expense.index', [
+        //     'expense' => $expense
+        // ]);
+        return redirect()->route('finances.expense.index');
     }
 
     /**
@@ -53,16 +80,23 @@ class ExpenseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Expense $expense)
     {
-        //
+        $expense->name = $request->get('name');
+        $expense->amount = $request->get('amount');
+        $expense->date = $request->get('date');
+        $expense->save();
+        return redirect()->route('finances.expense.index',[
+            'expense'=> $expense
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Expense $expense)
     {
-        //
+        $expense->delete();
+        return redirect()->route('finances.expense.index');
     }
 }
