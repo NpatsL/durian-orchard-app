@@ -1,7 +1,7 @@
 <x-app-layout>
-    <div class="max-w-sm mx-auto mt-20 p-4 shadow-md rounded-lg border-t-2 border-teal-400">
+    <div class="max-w-2xl mx-auto mt-20 p-4 shadow-md rounded-lg border-t-2 border-teal-400">
         <div class="flex justify-between pb-4">
-            <a href="{{ route('finances.income.index') }}" class="btn btn-primary">Back</a>
+            <a href="{{ route('finances.income.index') }}" class="bg-red-400 hover:bg-red-600 text-black font-bold py-2 px-4 rounded">Back</a>
             <p class="font-bold text-xl">Edit Income</p>
         </div>
         <form action="{{ route('finances.income.update', $income->id) }}" method="POST">
@@ -24,7 +24,7 @@
             </div>
 
             <div class="flex items-center justify-end mt-6">
-                <button type="submit" class="btn btn-primary">Update Income</button>
+                <button type="submit" class="bg-green-400 hover:bg-green-600 text-black font-bold py-2 px-4 rounded">Update Income</button>
             </div>
         </form>
     </div>

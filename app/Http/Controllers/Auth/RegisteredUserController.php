@@ -45,7 +45,8 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
-
+        $users = User::all();
         return redirect(RouteServiceProvider::HOME);
+        //return view('users.index', compact('users'));
     }
 }

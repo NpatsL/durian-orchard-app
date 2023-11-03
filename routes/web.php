@@ -69,6 +69,9 @@ Route::get('finances/expense/{expense}/edit', [ExpenseController::class, 'edit']
 Route::delete('/finances/income/{income}', [IncomeController::class, 'destroy'])->name('finances.income.destroy');
 Route::delete('/finances/expense/{expense}', [ExpenseController::class, 'destroy'])->name('finances.expense.destroy');
 
+Route::get('/finances/{type}/show', [FinanceController::class, 'show'])
+    ->name('finances.show');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

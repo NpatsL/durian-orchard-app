@@ -58,9 +58,23 @@ class FinanceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request, $type)
     {
-        //
+        $selectedMonth = $request->input('month');
+        $incomes = Income::whereMonth('date', '=', date('m', strtotime($selectedMonth)))
+            ->whereYear('date', '=', date('Y', strtotime($selectedMonth)))
+            ->get();
+    
+        $expenses = Expense::whereMonth('date', '=', date('m', strtotime($selectedMonth)))
+            ->whereYear('date', '=', date('Y', strtotime($selectedMonth)))
+            ->get();
+    
+        $totalIncome = $incomes->sum('amount');
+        $totalExpenses = $expenses->sum('amount');
+    
+        $profit = $totalIncome - $totalExpenses;
+    
+        return view('finances.show', compact('selectedMonth', 'incomes', 'expenses', 'totalIncome', 'totalExpenses', 'profit', 'type'));
     }
 
     /**

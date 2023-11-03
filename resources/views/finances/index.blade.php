@@ -3,8 +3,13 @@
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Finance</h2>
             <div class="py-2">
-                <a href="{{ route('finances.income.index') }}" class="btn btn-primary">Income List</a>
-                <a href="{{ route('finances.expense.index') }}" class="btn btn-primary">Expense List</a>
+                <a href="{{ route('finances.income.index') }}" class="bg-blue-400 hover:bg-blue-600 text-blue font-bold py-2 px-4 rounded mr-4">
+                    Income List
+                </a>
+                
+                <a href="{{ route('finances.expense.index') }}" class="bg-blue-400 hover:bg-blue-600 text-blue font-bold py-2 px-4 rounded">
+                    Expense List
+                </a>
             </div>
         </div>
     </x-slot>
@@ -21,10 +26,14 @@
                         </div>
                     </div>
                     <div class="mb-4">
-                        <h3 class="text-lg font-semibold">Total Income: {{ number_format($totalIncome, 2) }} baht</h3>
+                        <h3 class="text-lg font-semibold mb-4">Total Income: {{ number_format($totalIncome, 2) }} baht</h3>
+                        <a href="{{ route('finances.show', ['type' => 'income', 'month' => $selectedMonth]) }}" class="bg-green-400 hover:bg-green-600 text-black font-bold py-2 px-4 rounded">
+                            Income Details
+                        </a>
                     </div>
                     <div class="mb-4">
-                        <h3 class="text-lg font-semibold">Total Expenses: {{ number_format($totalExpenses, 2) }} baht</h3>
+                        <h3 class="text-lg font-semibold mb-4">Total Expenses: {{ number_format($totalExpenses, 2) }} baht</h3>
+                        <a href="{{ route('finances.show', ['type' => 'expense', 'month' => $selectedMonth]) }}" class="bg-green-400 hover:bg-green-600 text-black font-bold py-2 px-4 rounded">Expense Details</a>
                     </div>
                     <div class="mb-4">
                         <h3 class="text-lg font-semibold">Profit: {{ number_format($profit, 2) }} baht</h3>

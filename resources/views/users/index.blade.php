@@ -1,8 +1,5 @@
-{{-- @extends('layouts.main')
-
-@section('content') --}}
 <x-app-layout>
-    <div class="max-w-sm mx-auto mt-20 p-4 shadow-md rounded-lg border-t-2 border-teal-400">
+    <div class="max-w-5xl mx-auto mt-20 p-4 shadow-md rounded-lg border-t-2 border-teal-400">
         <div class="flex justify-between pb-4">
             <p class="font-bold text-xl">Employees Lists</p>
         </div>
@@ -16,15 +13,21 @@
                 <div class="bg-white shadow-md rounded-lg p-4 mb-4">
                     <p class="text-gray-700 text-lg font-medium">{{ $loop->iteration }}.</p>
                     <div class="flex-1">
-                        <p>{{ $user->name }}</p>
-                        <p>{{ $user->email }}</p>
+                        <div class="flex items-center">
+                            <p class="font-bold">Name :</p>
+                            <p class="ml-2">{{ $user->name }}</p>
+                        </div>
+                        <div class="flex items-center">
+                            <p class="font-bold">Email :</p>
+                            <p class="ml-2">{{ $user->email }}</p>
+                        </div>
+                        <div class="flex items-center">
+                            <p class="font-bold">Hash Password :</p>
+                            <p class="ml-2">{{ $user->password }}</p>
+                        </div>
                     </div>
-                    {{-- <div class="mt-2">
-                        <a href="{{ route('users.edit', $user) }}" class="text-indigo-600 hover:underline">Edit</a>
-                    </div> --}}
                 </div>
             @endforeach
         </div>
     </div>
 </x-app-layout>
-{{-- @endsection --}}
