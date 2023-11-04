@@ -20,4 +20,7 @@ class Task extends Model
     {
         return $this->belongsToMany(User::class);
     }
+    protected $fillable = [
+        'title'
+    ];
 }
