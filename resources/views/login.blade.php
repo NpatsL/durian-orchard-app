@@ -9,7 +9,9 @@
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
-
+        <div>
+            <h1 class="my-3 text-xl font-bold">Durian Orchard Management App</h1>
+        </div>
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
