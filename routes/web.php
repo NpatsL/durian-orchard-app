@@ -47,9 +47,7 @@ Route::get('/materials', [MaterialController::class, 'index'])
 // Route::get('/users', function () {
 //     return view('users.index');
 // })->name('users.index');
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard',[PlanController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/materials', [MaterialController::class, 'index'])->name('materials.index');
 Route::get('/finances', [FinanceController::class, 'index'])->name('finances.index');
@@ -75,10 +73,19 @@ Route::delete('/finances/expense/{expense}', [ExpenseController::class, 'destroy
 Route::get('/finances/{type}/show', [FinanceController::class, 'show'])
     ->name('finances.show');
 
+Route::get('/plans', [PlanController::class, 'index'])
+    ->name('plans.index');
+Route::post('/plans/create', [PlanController::class, 'create'])
+    ->name('plans.create');
+Route::put('/plans/task/{task}', [TaskController::class, 'update'])
+    ->name('task.update');
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
