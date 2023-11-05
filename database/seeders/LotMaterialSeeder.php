@@ -15,18 +15,33 @@ class LotMaterialSeeder extends Seeder
     public function run(): void
     {
         $lot = new LotMaterial();
-        $lot->name = "today";
+        $lot->name = "";
         $lot->date = "2020-11-5";
         $lot->save();
 
         $lot = new LotMaterial();
-        $lot->name = "tommorow";
-        $lot->date = "2023-1-2";
+        $lot->name = "";
+        $lot->date = "2021-1-2";
         $lot->save();
 
         $lot = new LotMaterial();
-        $lot->name = "next month";
-        $lot->date = "2023-10-5";
+        $lot->name = "";
+        $lot->date = "2022-10-5";
+        $lot->save();
+
+        $lot = new LotMaterial();
+        $lot->name = "";
+        $lot->date = "2022-3-26";
+        $lot->save();
+
+        $lot = new LotMaterial();
+        $lot->name = "";
+        $lot->date = "2022-7-14";
+        $lot->save();
+
+        $lot = new LotMaterial();
+        $lot->name = "";
+        $lot->date = "2023-11-4";
         $lot->save();
     }
 }

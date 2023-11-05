@@ -3,7 +3,7 @@
 @section('content') --}}
 <x-app-layout>
 <h1 class="text-5xl">
-    <li>Lot: {{$lot->name}}</li>
+    <li>Lot: {{$lot->id}}</li>
     <li>Date: {{$lot->date}}</li>
 </h1>
 <style>

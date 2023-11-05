@@ -15,35 +15,51 @@ class MaterialSeeder extends Seeder
     public function run(): void
     {
         $material = new Material();
-        $material->name = "Hoe";
-        $material->qty = 10;
-        $material->unit = "อัน";
+        $material->name = "ยาฆ่าแมลง";
+        $material->qty = 3000;
+        $material->unit = "มิลลิลิตร";
         $lot = LotMaterial::find(1);
         $material->lot_material_id = $lot->id;
         $material->save();
 
         $material = new Material();
-        $material->name = "Axe";
-        $material->qty = 7;
-        $material->unit = "อัน";
+        $material->name = "ยาพ่น";
+        $material->qty = 2000;
+        $material->unit = "มิลลิลิตร";
         $lot = LotMaterial::find(1);
         $material->lot_material_id = $lot->id;
         $material->save();
 
         $material = new Material();
         $material->name = "ปุ๋ย";
-        $material->qty = 30;
-        $material->unit = "กระสอบ";
+        $material->qty = 50;
+        $material->unit = "กิโลกรัม";
         $lot = LotMaterial::find(2);
         $material->lot_material_id = $lot->id;;
         $material->save();
 
         $material = new Material();
         $material->name = "ปุ๋ย";
-        $material->qty = 20;
-        $material->unit = "กระสอบ";
+        $material->qty = 100;
+        $material->unit = "กิโลกรัม";
         $lot = LotMaterial::find(1);
         $material->lot_material_id = $lot->id;;
+        $material->save();
+
+        $material = new Material();
+        $material->name = "จอบ";
+        $material->qty = 10;
+        $material->unit = "เล่ม";
+        $lot = LotMaterial::find(3);
+        $material->lot_material_id = $lot->id;
+        $material->save();
+
+        $material = new Material();
+        $material->name = "เสียม";
+        $material->qty = 10;
+        $material->unit = "เล่ม";
+        $lot = LotMaterial::find(3);
+        $material->lot_material_id = $lot->id;
         $material->save();
     }
 }
