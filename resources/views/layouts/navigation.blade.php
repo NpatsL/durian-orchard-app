@@ -16,7 +16,8 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Home') }}
                     </x-nav-link>
-                    @if(Auth::user()->role === \App\Models\User::ROLE_ADMIN)
+                    {{-- @if(Auth::user()->role === \App\Models\User::ROLE_ADMIN) --}}
+                    @if(Auth::user()->role === 1)
                         <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                             {{ __('Employees') }}
                         </x-nav-link>
@@ -85,7 +86,8 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Home') }}
             </x-responsive-nav-link>
-            @if(Auth::user()->role === \App\Models\User::ROLE_ADMIN)
+            {{-- @if(Auth::user()->role === \App\Models\User::ROLE_ADMIN) --}}
+            @if(Auth::user()->role === 1)
                 <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                     {{ __('Employees') }}
                 </x-responsive-nav-link>
