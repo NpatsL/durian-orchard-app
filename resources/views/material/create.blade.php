@@ -31,7 +31,7 @@
                 <li>Lot Material
                         <select name="selected_option">
                         @foreach($lots as $lot)
-                            <option value="{{ $lot->id }}">{{ $lot->name }}</option>
+                            <option value="{{ $lot->id }}">{{ $lot->date }}</option>
                         @endforeach
                         </select>
 

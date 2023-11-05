@@ -61,9 +61,10 @@ class MaterialController extends Controller
      * Display the specified resource.
      */
     public function show(Material $material)
-    {
+    {   $lot = LotMaterial::where('id',$material->lot_material_id)->get('date');
         return view('material.show',[
-            'material' => $material
+            'material' => $material,
+            'lot' => $lot
         ]);
     }
 

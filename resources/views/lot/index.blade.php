@@ -49,7 +49,7 @@
             <span class="text-lg font-medium text-gray-700">{{ $loop->iteration }}.</span>
             <div class="item-details">
                 <a href="{{route('lot.show',['lot' => $lot])}}">
-                    <h3>{{ $lot->name }}</h3>
+                    <h3>{{ $lot->date }}</h3>
                 </a>
 
                 <p></p>

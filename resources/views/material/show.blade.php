@@ -6,7 +6,7 @@
     <li>Quantity: {{$material->qty}}</li>
     <li>Unit: {{$material->unit}}</li>
     <li>Lot: {{$material->lot_material_id}}</li>
-    <li>Date: "2010-10-10"</li>
+    <li>Date: {{$lot[0]['date']}}</li>
 </h1>
 <style>
     li{
