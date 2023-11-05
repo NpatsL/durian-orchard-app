@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\LotMaterial;
+use App\Models\Material;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,11 +13,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('materials', function (Blueprint $table) {
+        Schema::create('material_lot', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('qty')->default(0);
-            $table->string('unit');
+            $table->foreignIdFor(Material::class);
+            $table->foreignIdFor(LotMaterial::class);
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('materials');
+        Schema::dropIfExists('material_lot');
     }
 };

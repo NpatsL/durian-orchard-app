@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LotMaterial;
 use Illuminate\Http\Request;
 
 class LotMaterialController extends Controller
@@ -11,7 +12,10 @@ class LotMaterialController extends Controller
      */
     public function index()
     {
-        //
+        $lots = LotMaterial::get();
+        return view('lot.index',[
+            'lots' => $lots
+        ]);
     }
 
     /**
@@ -19,7 +23,7 @@ class LotMaterialController extends Controller
      */
     public function create()
     {
-        //
+        return view('lot.create');
     }
 
     /**
@@ -27,31 +31,52 @@ class LotMaterialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>['required'],
+        ]);
+        $name = $request->get('name');
+        $date = $request->get('date');
+
+        $lot = new LotMaterial();
+        $lot->name = $name;
+        $lot->date = $date;
+        $lot->save();
+        return redirect()->route('lot.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(LotMaterial $lot)
     {
-        //
+        return view('lot.show',[
+            'lot' => $lot
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(LotMaterial $lot)
     {
-        //
+        return view('lot.edit',[
+            'lot' => $lot
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, LotMaterial $lot)
     {
-        //
+        $request->validate([
+            'name'=>['required'],
+        ]);
+        $lot->name = $request->get('name');
+        $lot->save();
+        return redirect()->route('lot.show',[
+            'lot' => $lot
+        ]);;
     }
 
     /**
@@ -61,4 +86,5 @@ class LotMaterialController extends Controller
     {
         //
     }
+
 }

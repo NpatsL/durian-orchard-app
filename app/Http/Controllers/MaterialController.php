@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LotMaterial;
 use App\Models\Material;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+
+
 
 class MaterialController extends Controller
 {
@@ -14,8 +17,10 @@ class MaterialController extends Controller
     public function index()
     {
         $materials = Material::get();
+        $lots = LotMaterial::get();
         return view('material.index',[
-            'materials' => $materials
+            'materials' => $materials,
+            'lots' => $lots
         ]);
     }
 
@@ -23,8 +28,10 @@ class MaterialController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        return view('material.create');
+    {   $lots = LotMaterial::get();
+        return view('material.create',[
+            'lots' => $lots
+        ]);
     }
 
     /**
@@ -40,11 +47,13 @@ class MaterialController extends Controller
         $material_name = $request->get('name');
         $material_qty = $request->get('qty');
         $material_unit = $request->get('unit');
+        $selectedOption = $_POST['selected_option'];
 
         $material = new Material();
         $material->name = $material_name;
         $material->qty = $material_qty;
         $material->unit = $material_unit;
+        $material->lot_material_id = $selectedOption;
         $material->save();
         return redirect()->route('material.index');
     }
@@ -76,7 +85,6 @@ class MaterialController extends Controller
     {
         $material->name = $request->get('name');
         $material->qty = $request->get('qty');
-        $material->unit = $request->get('unit');
         $material->save();
         return redirect()->route('material.show',[
             'material' => $material
@@ -88,10 +96,7 @@ class MaterialController extends Controller
      */
     public function destroy(Material $material)
     {
-        if($material->lotMaterials->isEmpty()){
-            $material->delete();
+        $material->delete();
         return redirect()->route('material.index');
-        }
-        return redirect()->back();
     }
 }

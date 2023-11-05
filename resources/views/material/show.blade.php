@@ -2,6 +2,8 @@
     <li>Material: {{ $material->name}}</li>
     <li>Quantity: {{$material->qty}}</li>
     <li>Unit: {{$material->unit}}</li>
+    <li>Lot: {{$material->lot_material_id}}</li>
+    <li>Date: "2010-10-10"</li>
 </h1>
 <style>
     li{
@@ -13,7 +15,7 @@
         <a class='inline-block py-2 px-4 border border-gray'
      href="{{route('material.edit',[ 'material' => $material])}}">Edit Material</a>
     </button>
-    @if($material->lotMaterials->isEmpty())
+
     <form class="inline-block"
         action="{{route('material.destroy',['material'=>$material])}}"
         method="POST">
@@ -21,6 +23,6 @@
         @method('DELETE')
         <button type="submit" class="block w-full bg-blue-500 text-white font-bold p-4 rounded-lg">Delete Material</button>
     </form>
-    @endif
+    <button><a href="/material" class="btn btn-primary">Back</a></button>
 </div>
 

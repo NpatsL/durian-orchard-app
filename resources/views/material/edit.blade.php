@@ -10,10 +10,15 @@
                 <label for="name" class="block mb-2 font-bold text-gray-600">Material Quantity</label>
                 <input type="text" id="qty" name="qty" value="{{$material->qty}}" autocomplete="off" placeholder="Put in material quantity" class="border border-gray-300 shadow p-3 w-full rounded mb-">
                 <label for="name" class="block mb-2 font-bold text-gray-600">Material Unit</label>
-                <input type="text" id="unit" name="unit" value="{{$material->unit}}" autocomplete="off" placeholder="Put in material unit" class="border border-gray-300 shadow p-3 w-full rounded mb-">
+                <input type="text" id="unit" name="unit" disabled autocomplete="off" placeholder="{{$material->unit}}" class="border border-gray-300 shadow p-3 w-full rounded mb-">
+                <label for="name" class="block mb-2 font-bold text-gray-600">Material Lot</label>
+                <input type="text" id="unit" name="unit" disabled autocomplete="off" placeholder="{{$material->lot_material_id}}" class="border border-gray-300 shadow p-3 w-full rounded mb-">
+                <label for="name" class="block mb-2 font-bold text-gray-600">Lot Date</label>
+                <input type="text" id="unit" name="unit" disabled autocomplete="off" placeholder="2020-12-12" class="border border-gray-300 shadow p-3 w-full rounded mb-">
             </div>
 
             <button type="submit" class="block w-full bg-blue-500 text-white font-bold p-4 rounded-lg">Submit</button>
+            <button><a href="{{ route('material.show', ['material'=>$material]) }}" class="btn btn-primary">Back</a></button>
         </form>
     </div>
 </div>

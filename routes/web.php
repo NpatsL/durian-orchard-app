@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LotMaterialController;
 use App\Http\Controllers\MaterialController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,4 @@ Route::get('/', function () {
 });
 
 Route::resource('/material', MaterialController::class);
+Route::resource('/lot', LotMaterialController::class);

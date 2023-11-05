@@ -25,6 +25,14 @@
                 @enderror
                 <li><label for="name" class="block mb-2 font-bold text-gray-600">Material Unit</label>
                     <input type="text" id="unit" name="unit" autocomplete="off" value="{{old('unit', '')}}" @error('unit') border-red-400 @enderror placeholder="Put in material unit" class="border border-gray-300 shadow p-3 w-full rounded mb-"></li>
+                <li>Lot Material
+                        <select name="selected_option">
+                        @foreach($lots as $lot)
+                            <option value="{{ $lot->id }}">{{ $lot->name }}</option>
+                        @endforeach
+                        </select>
+
+                </li>
             </div>
             <style>
                 form li{

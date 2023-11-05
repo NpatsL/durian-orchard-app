@@ -1,10 +1,11 @@
 <div class="max-w-lg mx-auto mt-16 overflow-hidden bg-white rounded-md shadow-md">
     <div class="px-4 py-2 bg-pink-100">
-        <h2 class="text-xl font-semibold text-gray-800">Material List</h2>
+        <h2 class="text-xl font-semibold text-gray-800">Lot List</h2>
             <a class='inline-block py-2 px-4 border border-gray'
-                href="{{route('material.create')}}">
-                    Create New Material
+                href="{{route('lot.create')}}">
+                    Create New Lot
             </a>
+
     </div>
 
     <style>
@@ -40,17 +41,18 @@
     </style>
 
     <ul class="divide-y divide-gray-200">
-        @foreach ($materials as $material)
+        @foreach ($lots as $lot)
         <li class="list-item">
             <span class="text-lg font-medium text-gray-700">{{ $loop->iteration }}.</span>
             <div class="item-details">
-                <a href="{{route('material.show',['material' => $material])}}">
-                    <h3>{{ $material->name }}</h3>
+                <a href="{{route('lot.show',['lot' => $lot])}}">
+                    <h3>{{ $lot->name }}</h3>
                 </a>
+
                 <p></p>
             </div>
             <div class="item-actions">
-                <!-- Add your action buttons or content here -->
+                
             </div>
         </li>
         @endforeach
