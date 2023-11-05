@@ -1,6 +1,7 @@
-@extends('layouts.main')
+{{-- @extends('layouts.main')
 
-@section('content')
+@section('content') --}}
+<x-app-layout>
 <div class="w-full">
     <h2 class="text-center text-blue-400 font-bold text-2xl uppercase mb-10">Create New Material</h2>
     <div class="bg-white p-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/2">
@@ -47,4 +48,5 @@
         </form>
     </div>
 </div>
-@endsection
+{{-- @endsection --}}
+</x-app-layout>
