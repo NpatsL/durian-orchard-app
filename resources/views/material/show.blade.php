@@ -1,3 +1,6 @@
+@extends('layouts.main')
+
+@section('content')
 <h1 class="text-5xl">
     <li>Material: {{ $material->name}}</li>
     <li>Quantity: {{$material->qty}}</li>
@@ -26,3 +29,4 @@
     <button><a href="/material" class="btn btn-primary">Back</a></button>
 </div>
 
+@endsection

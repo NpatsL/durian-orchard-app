@@ -25,6 +25,9 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             LotMaterialSeeder::class,
             MaterialSeeder::class,
+            ExpenseSeeder::class,
+            IncomeSeeder::class,
+            //EmployeeSeeder::class,
         ]);
     }
 }

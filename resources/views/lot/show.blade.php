@@ -1,3 +1,6 @@
+@extends('layouts.main')
+
+@section('content')
 <h1 class="text-5xl">
     <li>Lot: {{$lot->name}}</li>
     <li>Date: {{$lot->date}}</li>
@@ -14,4 +17,4 @@
     </button>
     <button><a href="/lot" class="btn btn-primary">Back</a></button>
 </div>
-
+@endsection

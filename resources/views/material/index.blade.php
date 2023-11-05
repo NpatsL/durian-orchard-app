@@ -1,3 +1,6 @@
+@extends('layouts.main')
+
+@section('content')
 <div class="max-w-lg mx-auto mt-16 overflow-hidden bg-white rounded-md shadow-md">
     <div class="px-4 py-2 bg-pink-100">
         <h2 class="text-xl font-semibold text-gray-800">Material List</h2>
@@ -56,3 +59,4 @@
         @endforeach
     </ul>
 </div>
+@endsection

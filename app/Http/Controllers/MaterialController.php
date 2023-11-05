@@ -8,7 +8,6 @@ use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 
-
 class MaterialController extends Controller
 {
     /**
@@ -96,7 +95,7 @@ class MaterialController extends Controller
      */
     public function destroy(Material $material)
     {
-        $material->delete();
-        return redirect()->route('material.index');
+            $material->delete();
+            return redirect()->route('material.index');
     }
 }
