@@ -19,28 +19,32 @@ class UserSeeder extends Seeder
         $user->name = 'admin';
         $user->email = 'admin@gmail.com';
         $user->password = Hash::make("admin");
-        $user->role = User::ROLE_ADMIN;
+        //$user->role = User::ROLE_ADMIN;
+        $user->role = 1;
         $user->save();
 
         $user = new User();
         $user->name = 'employee01';
         $user->email = 'em01@gmail.com';
         $user->password = Hash::make("em01");
-        $user->role = User::ROLE_EMPLOYEE;
+        //$user->role = User::ROLE_EMPLOYEE;
+        $user->role = 0;
         $user->save();
 
         $user = new User();
         $user->name = 'employee02';
         $user->email = 'em02@gmail.com';
         $user->password = Hash::make("em02");
-        $user->role = User::ROLE_EMPLOYEE;
+        // $user->role = User::ROLE_EMPLOYEE;
+        $user->role = 0;
         $user->save();
         
         $user = new User();
         $user->name = 'employee03';
         $user->email = 'em03@gmail.com';
         $user->password = Hash::make("em03");
-        $user->role = User::ROLE_EMPLOYEE;
+        // $user->role = User::ROLE_EMPLOYEE;
+        $user->role = 0;
         $user->save();
 
 
