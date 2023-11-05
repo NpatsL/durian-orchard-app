@@ -12,8 +12,8 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    public const ROLE_EMPLOYEE = 'EMPLOYEE';
-    public const ROLE_ADMIN = 'ADMIN';
+    // public const ROLE_EMPLOYEE = 'EMPLOYEE';
+    // public const ROLE_ADMIN = 'ADMIN';
 
     public function tasks(): BelongsToMany
     {
@@ -29,6 +29,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
