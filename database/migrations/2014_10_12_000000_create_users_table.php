@@ -21,7 +21,6 @@ return new class extends Migration
             //$table->string('role')->default('EMPOLYEE');
             $table->tinyInteger('role')->default(0);
             //$table->string('profilepicture_path')->nullable();
-
             $table->rememberToken();
             $table->timestamps();
         });

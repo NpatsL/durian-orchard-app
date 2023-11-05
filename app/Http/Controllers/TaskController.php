@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -58,6 +59,13 @@ class TaskController extends Controller
             Task::where('id', $id)->update(['status' => 'COMPLETE']);
         }
         return redirect()->route('dashboard')->with('success', 'Update status successfully.');
+    }
+    public function assign(Request $request)
+    {
+        $user = User::where('id', $request->user_id)->first();
+        $task = Task::where('id', $request->task_id)->first();
+        User::where('id', $request->user_id)->first()->tasks()->attach($request->task_id);
+        return redirect()->route('dashboard')->with('success', 'Assign task successfully.');
     }
 
     /**

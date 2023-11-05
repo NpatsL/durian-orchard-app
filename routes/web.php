@@ -79,6 +79,10 @@ Route::post('/plans/create', [PlanController::class, 'create'])
     ->name('plans.create');
 Route::put('/plans/task/{task}', [TaskController::class, 'update'])
     ->name('task.update');
+Route::put('/plans/assign/{task}', [TaskController::class, 'assign'])
+    ->name('task.assign');
+
+
 
 
 
