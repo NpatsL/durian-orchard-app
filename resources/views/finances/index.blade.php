@@ -22,7 +22,7 @@
                         <h2 class="text-xl font-semibold text-gray-800 mb-4">Monthly Report - {{ date('F Y', strtotime($selectedMonth)) }}</h2>
                         <div class="flex items-center">
                             <label for="monthPicker">Select Month:</label>
-                            <input type="month" id="monthPicker" name="monthPicker" value="{{ $selectedMonth }}" onchange="window.location = '{{ route('finances.index') }}?month=' + this.value" class="ml-2">
+                            <input type="month" id="monthPicker" name="monthPicker" value="{{ $selectedMonth }}" onchange="window.location = '{{ route('finances.index') }}?month=' + this.value" class="ml-2" >
                         </div>
                     </div>
                     <div class="mb-4">
@@ -43,3 +43,19 @@
         </div>
     </div>
 </x-app-layout>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const monthPicker = document.getElementById("monthPicker");
+        const today = new Date();
+        const currentYear = today.getFullYear();
+        const currentMonth = today.getMonth() + 1;
+
+        monthPicker.setAttribute("max", `${currentYear}-${currentMonth.toString().padStart(2, "0")}`);
+        // monthPicker.value = "{{ $selectedMonth }}";
+    });
+</script>
+{{-- <style>
+    input[type="month"]::-webkit-clear-button {
+    display: none;
+    }
+</style> --}}

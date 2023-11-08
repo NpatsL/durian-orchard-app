@@ -11,10 +11,14 @@
                     <p class="text-3xl font-medium text-gray-800">There are no income records in the system.</p>
                 </div>
             @endif
-            @foreach ($incomes as $income)
+            @foreach ($incomes->reverse() as $income)
                 <div class="bg-white shadow-md rounded-lg p-4 mb-4 flex flex-col">
                     <p class="text-gray-700 text-lg font-medium">{{ $loop->iteration }}.</p>
                     <div class="flex-1">
+                        <div class="flex items-center">
+                            <p class="font-bold">Id :</p>
+                            <p class="ml-2">{{ $income->id }}</p>
+                        </div>
                         <div class="flex items-center">
                             <p class="font-bold">Date :</p>
                             <p class="ml-2">{{ $income->date }}</p>
