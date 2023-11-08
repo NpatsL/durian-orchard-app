@@ -13,7 +13,7 @@ class IncomeController extends Controller
      */
     public function index()
     {
-        $incomes = Income::all();
+        $incomes = Income::sortable()->get();
         return view('finances.income.index', ['incomes' => $incomes]);
     }
 
