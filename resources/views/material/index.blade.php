@@ -6,7 +6,7 @@
                 Create New Material
             </a>
         </div>
-        
+
          <!-- Table Section -->
     <div class="w-full px-4 py-4 mx-auto">
         <!-- Card -->
@@ -183,7 +183,7 @@
                                                     <td class="h-px w-px whitespace-nowrap">
                                                         <div class="px-6 py-2">
                                                             <p class="text-sm">
-                                                                {{ $material->unit }}
+                                                                {{ $material->lot_material_id}}
                                                             </p>
                                                         </div>
 
@@ -229,5 +229,5 @@
         </div>
         <!-- End Table Section -->
     </div>
-   
+
 </x-app-layout>

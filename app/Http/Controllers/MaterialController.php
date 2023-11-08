@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\MaterialResource;
 use App\Models\LotMaterial;
 use App\Models\Material;
 use Illuminate\Auth\Events\Validated;
@@ -18,9 +19,14 @@ class MaterialController extends Controller
         $materials = Material::sortable()->get();
         $lots = LotMaterial::get();
         return view('material.index',[
-            'materials' => $materials,
+            'materials' =>  $materials,
             'lots' => $lots
         ]);
+        // return view('material.index',[
+        //     'materials' => MaterialResource::collection($materials),
+        //     'lots' => $lots
+        // ]);
+        // return MaterialResource::collection($materials);
     }
 
     /**
@@ -40,7 +46,7 @@ class MaterialController extends Controller
     {
         $request->validate([
             'name'=>['required'],
-            'qty' =>['required', 'integer'],
+            'qty' =>['required', 'integer', 'min:0', 'max:1000000'],
             'unit' =>['required']
         ]);
         $material_name = $request->get('name');
