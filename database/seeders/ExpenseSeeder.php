@@ -47,7 +47,7 @@ class ExpenseSeeder extends Seeder
 
         $expense = new Expense();
         $expense->name = "จ่ายค่าไฟ";
-        $expense->date = "2023-11-14";
+        $expense->date = "2023-11-8";
         $expense->amount = 2500.00;
         $expense->save();
 

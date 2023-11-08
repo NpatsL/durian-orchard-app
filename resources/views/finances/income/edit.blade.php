@@ -15,12 +15,13 @@
 
             <div class="mb-4">
                 <label for="amount" class="block text-gray-700 text-sm font-bold mb-2">Amount</label>
-                <input type="number" id="amount" name="amount" value="{{ $income->amount }}" class="form-input" required>
+                <input type="number" id="amount" name="amount" value="{{ $income->amount }}" class="form-input" min="1" step="0.01" required>
+                <p id="amount-error" class="text-red-500 text-sm mt-2 hidden">Amount must be greater than 0.</p>
             </div>
 
             <div class="mb-4">
                 <label for="date" class="block text-gray-700 text-sm font-bold mb-2">Date</label>
-                <input type="date" id="date" name="date" value="{{ $income->date }}" class="form-input" required>
+                <input type="date" id="date" name="date" value="{{ $income->date }}" class="form-input" required>           
             </div>
 
             <div class="flex items-center justify-end mt-6">
@@ -28,4 +29,22 @@
             </div>
         </form>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const amountInput = document.getElementById("amount");
+            const amountError = document.getElementById("amount-error");
+    
+            amountInput.addEventListener("input", function () {
+                const amount = parseFloat(amountInput.value);
+                if (amount <= 0 || isNaN(amount)) {
+                    amountError.classList.remove("hidden");
+                } else {
+                    amountError.classList.add("hidden");
+                }
+            });
+            const today = new Date();
+            const todayFormatted = today.toISOString().split("T")[0];
+            document.getElementById("date").max = todayFormatted;
+        });
+    </script>
 </x-app-layout>
