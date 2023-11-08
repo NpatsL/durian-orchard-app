@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="max-w-5xl mx-auto mt-10 p-4 shadow-md rounded-lg border-t-2 border-teal-400">
         <div class="flex justify-end">
-            <a class="bg-blue-400 hover:bg-blue-600 text-black font-bold py-2 px-4 rounded justify-self-end"
+            <a class="bg-blue-400 hover:bg-blue-600 text-black font-bold py-2 px-4 rounded"
                 href="{{ route('material.create') }}">
                 Create New Material
             </a>
