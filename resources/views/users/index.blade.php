@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="max-w-5xl mx-auto mt-10 p-4 shadow-md rounded-lg border-t-2 border-teal-400">
         <!-- Table Section -->
-        <div class="w-full px-4 py-5 sm:px-6 lg:px-8 lg:py-8 mx-auto">
+        <div class="w-full px-4 py-4 mx-auto">
             <!-- Card -->
             <div class="flex flex-col">
                 <div class="-m-1.5 overflow-x-auto">

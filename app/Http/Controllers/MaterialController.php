@@ -15,7 +15,7 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        $materials = Material::get();
+        $materials = Material::sortable()->get();
         $lots = LotMaterial::get();
         return view('material.index',[
             'materials' => $materials,

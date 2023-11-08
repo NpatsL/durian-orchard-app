@@ -1,13 +1,13 @@
 <x-app-layout>
     <div class="max-w-5xl mx-auto mt-10 p-4 shadow-md rounded-lg border-t-2 border-teal-400">
-        <div class="flex justify-between pb-4">
+        <div class="flex justify-between">
             <a href="{{ route('finances.index') }}"
                 class="bg-red-400 hover:bg-red-600 text-black font-bold py-2 px-4 rounded">Back</a>
             <a href="{{ route('finances.income.create') }}"
                 class="bg-blue-400 hover:bg-blue-600 text-black font-bold py-2 px-4 rounded">New Income</a>
         </div>
         <!-- Table Section -->
-        <div class="w-full px-4 py-5 sm:px-6 lg:px-8 lg:py-8 mx-auto">
+        <div class="w-full px-4 py-4 mx-auto">
             <!-- Card -->
             <div class="flex flex-col">
                 <div class="-m-1.5 overflow-x-auto">
