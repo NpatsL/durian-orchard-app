@@ -1,11 +1,12 @@
 <x-app-layout>
     <div class="max-w-2xl mx-auto mt-20 p-4 shadow-md rounded-lg border-t-2 border-teal-400">
         <div class="flex justify-between pb-4">
-            <a href="{{ route('finances.expense.index') }}" class="bg-red-400 hover:bg-red-600 text-black font-bold py-2 px-4 rounded">Back</a>
+            <a href="{{ route('finances.expense.index') }}"
+                class="bg-red-400 hover:bg-red-600 text-black font-bold py-2 px-4 rounded">Back</a>
             <p class="font-bold text-xl">Create New Expense</p>
         </div>
 
-        <form action="{{ route('finances.expense.store') }}" method="POST">
+        <form action="{{ route('finances.expense.store') }}" method="POST" onsubmit="return confirm('Are you sure you want to add new expense?');">
             @csrf
             <div class="mb-4">
                 <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
@@ -17,28 +18,33 @@
             </div>
             <div class="mb-4">
                 <label for="material_id" class="block text-gray-700 text-sm font-bold mb-2">Material:</label>
-                <select name="material_id" id="material_id" class="form-control" required>
-                    @foreach($materials as $material)
-                        <option value="{{ $material->id }}" data-lot-date="{{ $lotDates[$material->lot_material_id] }}">{{ $material->name }}</option>
+                <select id="material_id" name="material_id">
+                    <option value="null">None</option>
+                    @foreach ($materials->reverse() as $material)
+                        <option value="{{ $material->id }}">( {{ $material->lotMaterial->date }} ) {{ $material->name }}
+                        </option>
                     @endforeach
                 </select>
             </div>
             <div class="mb-4">
-                <label for="lot_date" class="block text-gray-700 text-sm font-bold mb-2">Lot Date:</label>
-                <span id="lot_date_placeholder">Select a Material to see the Lot Date</span>
-            </div>
-            <div class="mb-4">
                 <label for="amount" class="block text-gray-700 text-sm font-bold mb-2">Amount:</label>
-                <input type="number" name="amount" class="form-control" id="amount" min="1" step="0.01" required>
+                <input type="number" name="amount" class="form-control" id="amount" min="1" step="0.01"
+                    required>
                 <p id="amount-error" class="text-red-500 text-sm mt-2 hidden">Amount must be greater than 0.</p>
             </div>
             <div class="flex items-center justify-end mt-6">
-                <button type="submit" class="bg-green-400 hover:bg-green-600 text-black font-bold py-2 px-4 rounded">Create Expense</button>
+                <button type="submit"
+                    class="bg-green-400 hover:bg-green-600 text-black font-bold py-2 px-4 rounded">Create
+                    Expense</button>
             </div>
         </form>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            const today = new Date();
+            today.setDate(today.getDate() + 1);
+            const todayFormatted = today.toISOString().split("T")[0];
+            document.getElementById("date").max = todayFormatted;
             const amountInput = document.getElementById("amount");
             const amountError = document.getElementById("amount-error");
             const materialDropdown = document.getElementById("material_id");
@@ -73,9 +79,6 @@
                 }
             }
 
-            const today = new Date();
-            const todayFormatted = today.toISOString().split("T")[0];
-            document.getElementById("date").max = todayFormatted;
         });
     </script>
 </x-app-layout>

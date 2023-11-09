@@ -81,6 +81,7 @@ class TaskController extends Controller
         $task->deadline = $request->get('deadline');
         if ($request->material_id == 'null') {
             $task->material_id = null;
+            $task->use_qty = 0;
         } else {
             $task->material_id = $request->get('material_id');
             $task->use_qty = $request->get('use_qty');

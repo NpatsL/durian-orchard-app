@@ -32,8 +32,8 @@
                 <label for="material" class="block text-gray-700 text-sm font-bold mb-2">Material</label>
                 <select id="material_id" name="material_id">
                     <option value="null">None</option>
-                    @foreach ($materials as $material)
-                        <option value="{{ $material->id }}">( {{ $material->lotMaterial->date }} ) {{ $material->name }} ( {{ $material->unit }} )
+                    @foreach ($materials->reverse() as $material)
+                        <option value="{{ $material->id }}" {{ ($task->material_id == $material->id ? "selected":"") }}>( {{ $material->lotMaterial->date }} ) {{ $material->name }} ( {{ $material->unit }} )
                         </option>
                         
                     @endforeach
@@ -41,7 +41,7 @@
             </div>
 
             <div class="mb-4">
-                <label for="use_qty" class="block text-gray-700 text-sm font-bold mb-2">Quantity used </label>
+                <label id="" for="use_qty" class="block text-gray-700 text-sm font-bold mb-2">Quantity used </label>
                 <input type="number" id="use_qty" name="use_qty" value="{{ $task->use_qty }}" class="form-input"
                     min="1" step="0.01" required>
                 <p id="amount-error" class="text-red-500 text-sm mt-2 hidden">Amount must be greater than 0.</p>
@@ -58,12 +58,14 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const today = new Date();
+            today.setDate(today.getDate() + 1);
             const todayFormatted = today.toISOString().split("T")[0];
             document.getElementById("deadline").min = todayFormatted;
             const mat = document.getElementById("material_id");
             mat.onchange = function() {
                 if (mat.options[mat.selectedIndex].value == "null") {
                     document.getElementById("use_qty").disabled = true;
+                    document.getElementById("use_qty").value = 0;
                 } else {
                     document.getElementById("use_qty").disabled = false;
                 }

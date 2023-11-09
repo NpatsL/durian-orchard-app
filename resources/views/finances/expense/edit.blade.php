@@ -24,22 +24,11 @@
                 <input type="date" id="date" name="date" value="{{ $expense->date }}" class="form-input" required>
             </div>
             <div class="mb-4">
-                <label for="material" class="block text-gray-700 text-sm font-bold mb-2">Material</label>
-                <select id="material" name="material_id" class="form-select" required>
-                    @foreach($materials as $material)
-                        <option value="{{ $material->id }}" {{ $material->id == $expense->material_id ? 'selected' : '' }}>
-                            {{ $material->name }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
-        
-            <div class="mb-4">
-                <label for="lot" class="block text-gray-700 text-sm font-bold mb-2">Lot Date</label>
-                <select id="lot" name="lot_id" class="form-select" required>
-                    @foreach($lotDates as $lotId => $lotDate)
-                        <option value="{{ $lotId }}" {{ $lotId == optional($expense->material)->lot_id ? 'selected' : '' }}>
-                            {{ $lotDate }}
+                <label for="material_id" class="block text-gray-700 text-sm font-bold mb-2">Material</label>
+                <select id="material_id" name="material_id">
+                    <option value="null">None</option>
+                    @foreach ($materials->reverse() as $material)
+                        <option value="{{ $material->id }}" {{ ($expense->material_id == $material->id ? "selected":"") }}>( {{ $material->lotMaterial->date }} ) {{ $material->name }}
                         </option>
                     @endforeach
                 </select>
@@ -52,6 +41,11 @@
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            const today = new Date();
+            today.setDate(today.getDate() + 1);
+            const todayFormatted = today.toISOString().split("T")[0];
+            document.getElementById("date").max = todayFormatted;
+            
             const amountInput = document.getElementById("amount");
             const amountError = document.getElementById("amount-error");
             const materialSelect = document.getElementById("material");
@@ -80,10 +74,6 @@
                     lotSelect.appendChild(option);
                 }
             });
-
-            const today = new Date();
-            const todayFormatted = today.toISOString().split("T")[0];
-            document.getElementById("date").max = todayFormatted;
         });
     </script>
 </x-app-layout>

@@ -28,6 +28,10 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            const today = new Date();
+            today.setDate(today.getDate() + 1);
+            const todayFormatted = today.toISOString().split("T")[0];
+            document.getElementById("date").max = todayFormatted;
             const amountInput = document.getElementById("amount");
             const amountError = document.getElementById("amount-error");
     
@@ -39,9 +43,7 @@
                     amountError.classList.add("hidden");
                 }
             });
-            const today = new Date();
-            const todayFormatted = today.toISOString().split("T")[0];
-            document.getElementById("date").max = todayFormatted;
+            
         });
     </script>
 </x-app-layout>

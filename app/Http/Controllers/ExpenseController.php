@@ -16,7 +16,7 @@ class ExpenseController extends Controller
     {
         $expenses = Expense::sortable()->get();
         $lots = LotMaterial::sortable()->get();
-        return view('finances.expense.index', ['expenses' => $expenses , 'lots' => $lots ]);
+        return view('finances.expense.index', ['expenses' => $expenses, 'lots' => $lots]);
     }
 
     /**
@@ -50,7 +50,7 @@ class ExpenseController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request,Expense $expense)
+    public function store(Request $request, Expense $expense)
     {
         $request->validate([
             'name' => ['required', 'min:4', 'max:255'],
@@ -60,12 +60,17 @@ class ExpenseController extends Controller
         $expense->name = $request->name;
         $expense->amount = $request->amount;
         $expense->date = $request->date;
+        if ($request->material_id == "null")
+            $expense->material_id = null;
+        else
+            $expense->material_id = $request->material_id;
+
         $expense->save();
 
-        // return redirect()->route('finances.expense.index', [
-        //     'expense' => $expense
-        // ]);
-        return redirect()->route('finances.expense.index');
+        return redirect()->route('finances.expense.index', [
+            'expense' => $expense
+        ]);
+        // return redirect()->route('finances.expense.index');
     }
 
     /**
@@ -84,7 +89,7 @@ class ExpenseController extends Controller
         $expense = Expense::find($id);
         $materials = Material::sortable()->get();
         $lotDates = LotMaterial::pluck('date', 'id');
-    
+
         return view('finances.expense.edit', [
             'expense' => $expense,
             'materials' => $materials,
@@ -100,9 +105,13 @@ class ExpenseController extends Controller
         $expense->name = $request->get('name');
         $expense->amount = $request->get('amount');
         $expense->date = $request->get('date');
+        if ($request->material_id == "null")
+            $expense->material_id = null;
+        else
+            $expense->material_id = $request->material_id;
         $expense->save();
-        return redirect()->route('finances.expense.index',[
-            'expense'=> $expense
+        return redirect()->route('finances.expense.index', [
+            'expense' => $expense
         ]);
     }
 
