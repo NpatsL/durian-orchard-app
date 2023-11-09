@@ -16,10 +16,18 @@ class Task extends Model
         return $this->belongsTo(Plan::class);
     }
 
+    public function material(): BelongsTo
+    {
+        return $this->belongsTo(Material::class);
+    }
+
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class);
     }
+
+    
+
     protected $fillable = [
         'title'
     ];

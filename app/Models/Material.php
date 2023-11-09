@@ -23,4 +23,9 @@ class Material extends Model
     {
         return $this->hasMany(Expense::class);
     }
+
+    public function tasks(): HasMany
+    {
+        return $this->hasMany(Task::class);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Material;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -46,8 +47,9 @@ class TaskController extends Controller
     public function edit(string $id)
     {
         $task = Task::find($id);
+        $materials = Material::all();
     
-        return view('task.edit', ['task' => $task]);
+        return view('task.edit', ['task' => $task], ['materials' => $materials]);
     }
 
     /**
@@ -76,7 +78,13 @@ class TaskController extends Controller
         $task = Task::find($id);
         $task->name = $request->get('name');
         $task->detail = $request->get('detail');
-
+        $task->deadline = $request->get('deadline');
+        if ($request->material_id == 'null') {
+            $task->material_id = null;
+        } else {
+            $task->material_id = $request->get('material_id');
+            $task->use_qty = $request->get('use_qty');
+        }
         $task->save();
         return redirect()->route('dashboard')->with('success', 'Update task successfully.');
     }

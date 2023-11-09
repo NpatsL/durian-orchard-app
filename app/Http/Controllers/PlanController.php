@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Material;
 use App\Models\Plan;
 use Illuminate\Http\Request;
 use App\Models\Task;
@@ -17,13 +18,14 @@ class PlanController extends Controller
     {
         $users = DB::table('users')->where('role', 'EMPLOYEE')->get();
         $plan = DB::table('plans')->latest()->first();
+        $material = Material::all();
         // $plan = Plan::with('tasks')->latest()->first();
         if ($plan != null)
             // $tasks = Task::where('plan_id', $plan->id)->users->contains(auth()->user())->get();
 
             $tasks = Task::where('plan_id', $plan->id)->orderBy('deadline', 'asc')->get();
         else $tasks = null;
-        return view('dashboard', ['plan' => $plan, 'tasks' => $tasks, 'users' => $users]);
+        return view('dashboard', ['plan' => $plan, 'tasks' => $tasks, 'users' => $users, 'material' => $material]);
     }
 
     public function index(Request $request)
