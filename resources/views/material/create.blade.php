@@ -100,5 +100,12 @@
             </div>
         </form>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const today = new Date();
+            const todayFormatted = today.toISOString().split("T")[0];
+            document.getElementById("date").max = todayFormatted;
+        });
+    </script>
 </x-app-layout>
 

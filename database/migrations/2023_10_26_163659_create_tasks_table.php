@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('deadline');
             $table->integer('use_qty')->default(0);
             $table->string('status')->default('INCOMPLETE') ;  // notCompleted, completed
-            $table->foreignIdFor(\App\Models\Material::class);
+            $table->foreignIdFor(\App\Models\Material::class)->nullable();
             $table->timestamps();
         });
     }
