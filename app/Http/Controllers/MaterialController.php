@@ -47,7 +47,7 @@ class MaterialController extends Controller
     {
         $request->validate([
             'name'=>['required'],
-            'qty' =>['required', 'integer', 'min:0', 'max:1000000'],
+            'qty' =>['required', 'integer', 'min:1', 'max:1000000'],
             'unit' =>['required']
         ]);
         $material_name = $request->get('name');
