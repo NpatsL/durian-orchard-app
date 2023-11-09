@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Kyslik\ColumnSortable\Sortable;
 
@@ -13,8 +14,13 @@ class Material extends Model
 
     protected $fillable = ['name', 'unit', 'qty'];
 
-    public function lotMaterials(): HasMany
+    public function lotMaterial(): BelongsTo
     {
-        return $this->hasMany(LotMaterial::class);
+        return $this->belongsTo(LotMaterial::class);
+    }
+
+    public function expenses(): HasMany
+    {
+        return $this->hasMany(Expense::class);
     }
 }

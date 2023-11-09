@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Material;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->date('date');
             $table->double('amount');
+            $table->foreignIdFor(Material::class)->nullable();
             $table->timestamps();
         });
     }

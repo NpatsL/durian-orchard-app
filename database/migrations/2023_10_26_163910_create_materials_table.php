@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('name');
             $table->integer('qty')->default(0);
             $table->string('unit');
-            $table->foreignIdFor(LotMaterial::class);
+            // $table->foreignIdFor(LotMaterial::class);
+            $table->foreignId('lot_material_id')->constrained('lot_materials');
             $table->timestamps();
         });
     }

@@ -25,30 +25,35 @@ class ExpenseSeeder extends Seeder
         $expense->name = "จ่ายค่าปุ๋ยบำรุงต้น";
         $expense->date = "2023-3-26";
         $expense->amount = 3000.00;
+        $expense->material_id = 2;
         $expense->save();
 
         $expense = new Expense();
         $expense->name = "จ่ายค่าน้ำมันตัดหญ้า";
         $expense->date = "2023-7-14";
         $expense->amount = 300.00;
+        $expense->material_id = null;
         $expense->save();
 
         $expense = new Expense();
         $expense->name = "จ่ายค่าซ่อมเครื่องสูบน้ำ";
         $expense->date = "2023-5-24";
         $expense->amount = 500.00;
+        $expense->material_id = null;
         $expense->save();
 
         $expense = new Expense();
         $expense->name = "จ่ายค่าแรงงาน";
         $expense->date = "2023-6-6";
         $expense->amount = 1000.00;
+        $expense->material_id = null;
         $expense->save();
 
         $expense = new Expense();
         $expense->name = "จ่ายค่าไฟ";
         $expense->date = "2023-11-8";
         $expense->amount = 2500.00;
+        $expense->material_id = null;
         $expense->save();
 
     }
