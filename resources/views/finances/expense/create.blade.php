@@ -16,6 +16,18 @@
                 <input type="date" name="date" class="form-control" id="date" required>
             </div>
             <div class="mb-4">
+                <label for="material_id" class="block text-gray-700 text-sm font-bold mb-2">Material:</label>
+                <select name="material_id" id="material_id" class="form-control" required>
+                    @foreach($materials as $material)
+                        <option value="{{ $material->id }}" data-lot-date="{{ $lotDates[$material->lot_material_id] }}">{{ $material->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="lot_date" class="block text-gray-700 text-sm font-bold mb-2">Lot Date:</label>
+                <span id="lot_date_placeholder">Select a Material to see the Lot Date</span>
+            </div>
+            <div class="mb-4">
                 <label for="amount" class="block text-gray-700 text-sm font-bold mb-2">Amount:</label>
                 <input type="number" name="amount" class="form-control" id="amount" min="1" step="0.01" required>
                 <p id="amount-error" class="text-red-500 text-sm mt-2 hidden">Amount must be greater than 0.</p>
@@ -29,6 +41,8 @@
         document.addEventListener("DOMContentLoaded", function () {
             const amountInput = document.getElementById("amount");
             const amountError = document.getElementById("amount-error");
+            const materialDropdown = document.getElementById("material_id");
+            const lotDatePlaceholder = document.getElementById("lot_date_placeholder");
     
             amountInput.addEventListener("input", function () {
                 const amount = parseFloat(amountInput.value);
@@ -38,6 +52,27 @@
                     amountError.classList.add("hidden");
                 }
             });
+            materialDropdown.addEventListener("change", function () {
+                const selectedMaterialOption = materialDropdown.options[materialDropdown.selectedIndex];
+                const lotDate = selectedMaterialOption.getAttribute("data-lot-date");
+
+                if (lotDate) {
+                    lotDatePlaceholder.innerText = `${lotDate}`;
+                } else {
+                    lotDatePlaceholder.innerText = "Select a Material to see the Lot Date";
+                }   
+            });
+            if (materialDropdown.options.length > 0) {
+                const firstMaterialOption = materialDropdown.options[0];
+                const firstMaterialLotDate = firstMaterialOption.getAttribute("data-lot-date");
+
+                if (firstMaterialLotDate) {
+                    lotDatePlaceholder.innerText = `${firstMaterialLotDate}`;
+                } else {
+                    lotDatePlaceholder.innerText = "Select a Material to see the Lot Date";
+                }
+            }
+
             const today = new Date();
             const todayFormatted = today.toISOString().split("T")[0];
             document.getElementById("date").max = todayFormatted;

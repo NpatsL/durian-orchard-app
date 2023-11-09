@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Expense;
+use App\Models\Material;
+use App\Models\LotMaterial;
 
 class ExpenseController extends Controller
 {
@@ -12,7 +14,7 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::sortable()->get();
+        $expenses = Expense::with('material.lot')->sortable()->get();
         return view('finances.expense.index', ['expenses' => $expenses]);
     }
 
@@ -21,6 +23,12 @@ class ExpenseController extends Controller
      */
     public function create()
     {
+        $materials = Material::sortable()->get();
+        $lotDates = LotMaterial::pluck('date', 'id');
+        return view('finances.expense.create', [
+            'materials' => $materials,
+            'lotDates' => $lotDates,
+        ]);
         // $request->validate([
         //     'name' => ['required', 'min:4', 'max:255'],
         // ]);
@@ -32,7 +40,7 @@ class ExpenseController extends Controller
         // $expense->save();
 
         // return redirect()->route('finances.expense.index');
-        return view('finances.expense.create');
+        // return view('finances.expense.create');
         // return view('finances.expense.create', [
         //     'expense' => $expense
         // ]);
@@ -73,8 +81,14 @@ class ExpenseController extends Controller
     public function edit(string $id)
     {
         $expense = Expense::find($id);
+        $materials = Material::sortable()->get();
+        $lotDates = LotMaterial::pluck('date', 'id');
     
-        return view('finances.expense.edit', ['expense' => $expense]);
+        return view('finances.expense.edit', [
+            'expense' => $expense,
+            'materials' => $materials,
+            'lotDates' => $lotDates,
+        ]);
     }
 
     /**

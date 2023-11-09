@@ -90,7 +90,37 @@
                                                     </svg>
                                                 </div>
                                             </th>
-
+                                            <th scope="col" class="px-6 py-3 text-start">
+                                                <div class="flex flex-row text-xs font-semibold uppercase tracking-wide text-gray-800">
+                                                    <a href="{{ url()->current() }}?sort=material.name">
+                                                        Material
+                                                        @if(request('sort') == 'material.name')
+                                                            <svg class="flex-shrink-0 w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                                stroke-linejoin="round">
+                                                                <path d="m7 15 5 5 5-5" />
+                                                                <path d="m7 9 5-5 5 5" />
+                                                            </svg>
+                                                        @endif
+                                                    </a>
+                                                </div>
+                                            </th>
+                                            
+                                            <th scope="col" class="px-6 py-3 text-start">
+                                                <div class="flex flex-row text-xs font-semibold uppercase tracking-wide text-gray-800">
+                                                    <a href="{{ url()->current() }}?sort=material.lot.date">
+                                                        Lot Date
+                                                        @if(request('sort') == 'material.lot.date')
+                                                            <svg class="flex-shrink-0 w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                                stroke-linejoin="round">
+                                                                <path d="m7 15 5 5 5-5" />
+                                                                <path d="m7 9 5-5 5 5" />
+                                                            </svg>
+                                                        @endif
+                                                    </a>
+                                                </div>
+                                            </th>
                                             <th scope="col" class="px-6 py-3 text-end"></th>
                                         </tr>
                                     </thead>
@@ -163,8 +193,26 @@
                                                                     {{ $expense->amount }}
                                                                 </p>
                                                             </div>
-
                                                         </td>
+                                                        <td class="h-px w-px whitespace-nowrap">
+                                                            <a class="block relative z-10" href="#">
+                                                                <div class="px-6 py-2">
+                                                                    <p class="text-sm">
+                                                                        {{ optional($expense->material)->name }}
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </td>
+                                                        <td class="h-px w-px whitespace-nowrap">
+                                                            <a class="block relative z-10" href="#">
+                                                                <div class="px-6 py-2">
+                                                                    <p class="text-sm">
+                                                                        {{ optional($expense->material)->lot ? $expense->material->lot->date : 'N/A' }}
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </td>
+
                                                         <td class="h-px w-px whitespace-nowrap">
                                                             <div class="px-6 py-2">
                                                                 <div class="flex justify-end">

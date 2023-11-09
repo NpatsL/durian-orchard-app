@@ -23,6 +23,27 @@
                 <label for="date" class="block text-gray-700 text-sm font-bold mb-2">Date</label>
                 <input type="date" id="date" name="date" value="{{ $expense->date }}" class="form-input" required>
             </div>
+            <div class="mb-4">
+                <label for="material" class="block text-gray-700 text-sm font-bold mb-2">Material</label>
+                <select id="material" name="material_id" class="form-select" required>
+                    @foreach($materials as $material)
+                        <option value="{{ $material->id }}" {{ $material->id == $expense->material_id ? 'selected' : '' }}>
+                            {{ $material->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        
+            <div class="mb-4">
+                <label for="lot" class="block text-gray-700 text-sm font-bold mb-2">Lot Date</label>
+                <select id="lot" name="lot_id" class="form-select" required>
+                    @foreach($lotDates as $lotId => $lotDate)
+                        <option value="{{ $lotId }}" {{ $lotId == optional($expense->material)->lot_id ? 'selected' : '' }}>
+                            {{ $lotDate }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
 
             <div class="flex items-center justify-end mt-6">
                 <button type="submit" class="bg-green-400 hover:bg-green-600 text-black font-bold py-2 px-4 rounded">Update Expense</button>
@@ -33,7 +54,9 @@
         document.addEventListener("DOMContentLoaded", function () {
             const amountInput = document.getElementById("amount");
             const amountError = document.getElementById("amount-error");
-    
+            const materialSelect = document.getElementById("material");
+            const lotSelect = document.getElementById("lot");
+
             amountInput.addEventListener("input", function () {
                 const amount = parseFloat(amountInput.value);
                 if (amount <= 0 || isNaN(amount)) {
@@ -42,6 +65,22 @@
                     amountError.classList.add("hidden");
                 }
             });
+
+            materialSelect.addEventListener("change", function () {
+                const selectedMaterialId = materialSelect.value;
+
+                const newLotDates = lotDates[selectedMaterialId];
+
+                lotSelect.innerHTML = "";
+
+                for (const [lotId, lotDate] of Object.entries(newLotDates)) {
+                    const option = document.createElement("option");
+                    option.value = lotId;
+                    option.text = lotDate;
+                    lotSelect.appendChild(option);
+                }
+            });
+
             const today = new Date();
             const todayFormatted = today.toISOString().split("T")[0];
             document.getElementById("date").max = todayFormatted;
