@@ -35,7 +35,7 @@ class MaterialSeeder extends Seeder
         $material->qty = 50;
         $material->unit = "กิโลกรัม";
         $lot = LotMaterial::find(2);
-        $material->lot_material_id = $lot->id;;
+        $material->lot_material_id = $lot->id;
         $material->save();
 
         $material = new Material();
@@ -43,7 +43,7 @@ class MaterialSeeder extends Seeder
         $material->qty = 100;
         $material->unit = "กิโลกรัม";
         $lot = LotMaterial::find(1);
-        $material->lot_material_id = $lot->id;;
+        $material->lot_material_id = $lot->id;
         $material->save();
 
         $material = new Material();
