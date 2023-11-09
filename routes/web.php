@@ -47,7 +47,7 @@ Route::get('/materials', [MaterialController::class, 'index'])
 // Route::get('/users', function () {
 //     return view('users.index');
 // })->name('users.index');
-Route::get('/dashboard',[PlanController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [PlanController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/materials', [MaterialController::class, 'index'])->name('materials.index');
 Route::get('/finances', [FinanceController::class, 'index'])->name('finances.index');
@@ -77,7 +77,11 @@ Route::get('/plans', [PlanController::class, 'index'])
     ->name('plans.index');
 Route::post('/plans/create', [PlanController::class, 'create'])
     ->name('plans.create');
-Route::put('/plans/task/{task}', [TaskController::class, 'update'])
+Route::put('/plans/task/{task}', [TaskController::class, 'status'])
+    ->name('task.status');
+Route::get('/plans/task/edit/{task}', [TaskController::class, 'edit'])
+    ->name('task.edit');
+Route::put('/plans/task/update/{task}', [TaskController::class, 'update'])
     ->name('task.update');
 Route::put('/plans/assign/{task}', [TaskController::class, 'assign'])
     ->name('task.assign');

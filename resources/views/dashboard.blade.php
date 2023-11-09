@@ -33,10 +33,15 @@
                             @if (auth()->user()->role == 1 || $task->users->contains(auth()->user()->id))
                                 @if ($task->deadline == date('Y-m-d'))
                                     <div class="flex flex-col  bg-white border shadow-sm rounded-xl ">
-                                        <div class="bg-blue-600 border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5 ">
+                                        <div class="bg-blue-600 border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5 flex flex-row justify-between">
                                             <p class="mt-1 text-md text-gray-200 font-bold">
                                                 {{ $task->deadline }}
                                             </p>
+                                            @if ( $task->status == 'INCOMPLETE' && auth()->user()->role == 1)
+                                                <a class="mt-1 text-sm font-bold text-gray-200 underline " href="{{ route('task.edit', $task->id) }}">
+                                                    Edit
+                                                </a>
+                                            @endif
                                         </div>
                                         <div class="p-4 md:p-5">
                                             <h3 class="text-lg font-bold text-gray-800 ">
@@ -48,7 +53,7 @@
                                             @if ($task->status == 'INCOMPLETE')
                                                 <span
                                                     class="bg-gray-300 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">{{ $task->status }}</span>
-                                                <form action="{{ route('task.update', $task->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to change status?');">
+                                                <form action="{{ route('task.status', $task->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to change status?');">
                                                     @csrf
                                                     @method('PUT')
                                                     <button type="submit"
@@ -81,7 +86,7 @@
                                                 <p class="mt-2 text-sm text-gray-600 ">{{ $user->name }} </p>
                                             @endforeach
                                 @endif
-
+                                @if ( $task->status == 'INCOMPLETE')
                                 <div class="@if (auth()->user()->role == 0) hidden @endif">
                                     <form action="{{ route('task.assign', $task->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to update this task?');">
                                         @csrf
@@ -100,7 +105,6 @@
                                         </select>
                                         <button type="submit"
                                             class=" inline-flex items-center gap-2 mt-2 text-sm font-medium text-blue-500 hover:text-blue-700">
-
                                             assign
                                             <svg class="w-2.5 h-auto" width="16" height="16" viewBox="0 0 16 16"
                                                 fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -111,6 +115,7 @@
                                         </button>
                                     </form>
                                 </div>
+                                @endif
                 </div>
             </div>
             @endif
@@ -126,10 +131,16 @@
                 @foreach ($tasks as $task)
                     @if (auth()->user()->role == 1 || $task->users->contains(auth()->user()->id))
                         <div class="flex flex-col  bg-white border shadow-sm rounded-xl ">
-                            <div class="bg-blue-600 border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5 ">
+                            <div class="bg-blue-600 border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5 flex flex-row justify-between">
                                 <p class="mt-1 text-md text-gray-200 font-bold">
                                     {{ $task->deadline }}
                                 </p>
+                                @if ( $task->status == 'INCOMPLETE' && auth()->user()->role == 1)
+                                <a class="mt-1 text-sm font-bold text-gray-200 underline " href="{{ route('task.edit', $task->id) }}">
+                                    Edit
+                                </a>
+                                @endif
+                            
                             </div>
                             <div class="p-4 md:p-5">
                                 <h3 class="text-lg font-bold text-gray-800 ">
@@ -141,7 +152,7 @@
                                 @if ($task->status == 'INCOMPLETE')
                                     <span
                                         class="bg-gray-300 text-gray-800 text-xs font-medium  mr-2 px-2.5 py-0.5 rounded ">{{ $task->status }}</span>
-                                    <form action="{{ route('task.update', $task->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to change status?');">
+                                    <form action="{{ route('task.status', $task->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to change status?');">
                                         @csrf
                                         @method('PUT')
                                         <button type="submit"
@@ -172,7 +183,9 @@
                                         <p class="mt-2 text-sm text-gray-600 ">{{ $user->name }} </p>
                                     @endforeach
                                 @endif
-
+                                @if ( $task->status == 'INCOMPLETE')
+                                    
+                              
                                 <div class="@if (auth()->user()->role == 0) hidden @endif">
                                     <form action="{{ route('task.assign', $task->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to update this task?');">
                                         @csrf
@@ -203,6 +216,7 @@
                                         </button>
                                     </form>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     @endif

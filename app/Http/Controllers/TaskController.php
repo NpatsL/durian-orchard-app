@@ -45,13 +45,15 @@ class TaskController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $task = Task::find($id);
+    
+        return view('task.edit', ['task' => $task]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(string $id)
+    public function status(string $id)
     {
         if (Task::where('id', $id)->first()->status == 'COMPLETE') {
             Task::where('id', $id)->update(['status' => 'INCOMPLETE']);
@@ -60,12 +62,23 @@ class TaskController extends Controller
         }
         return redirect()->route('dashboard')->with('success', 'Update status successfully.');
     }
+
     public function assign(Request $request)
     {
         $user = User::where('id', $request->user_id)->first();
         $task = Task::where('id', $request->task_id)->first();
         User::where('id', $request->user_id)->first()->tasks()->attach($request->task_id);
         return redirect()->route('dashboard')->with('success', 'Assign task successfully.');
+    }
+
+    public function update(Request $request, string $id)
+    {
+        $task = Task::find($id);
+        $task->name = $request->get('name');
+        $task->detail = $request->get('detail');
+
+        $task->save();
+        return redirect()->route('dashboard')->with('success', 'Update task successfully.');
     }
 
     /**
