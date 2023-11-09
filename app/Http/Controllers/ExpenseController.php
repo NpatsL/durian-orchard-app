@@ -12,7 +12,7 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::all();
+        $expenses = Expense::sortable()->get();
         return view('finances.expense.index', ['expenses' => $expenses]);
     }
 

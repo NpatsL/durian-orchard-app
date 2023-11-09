@@ -62,7 +62,7 @@
              href="{{route('material.edit',[ 'material' => $material])}}">Edit Material</a>
             </button>
         
-            <form class="inline-block"
+            <form class="inline-block" onsubmit="return confirm('Are you sure you want to delete this material?');"
                 action="{{route('material.destroy',['material'=>$material])}}"
                 method="POST">
                 @csrf

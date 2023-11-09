@@ -4,7 +4,7 @@
             <a href="{{ route('finances.expense.index') }}" class="bg-red-400 hover:bg-red-600 text-black font-bold py-2 px-4 rounded">Back</a>
             <p class="font-bold text-xl">Edit Expense</p>
         </div>
-        <form action="{{ route('finances.expense.update', $expense->id) }}" method="POST">
+        <form action="{{ route('finances.expense.update', $expense->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to edit this expense?');">
             @csrf
             @method('PUT')
 

@@ -31,7 +31,7 @@
             <p class="font-bold text-xl">Edit Lot</p>
         </div>
 
-        <form action="{{ route('lot.update', ['lot'=>$lot]) }}" method="POST">
+        <form action="{{ route('lot.update', ['lot'=>$lot]) }}" method="POST" onsubmit="return confirm('Are you sure you want to edit this lot?');">
             @csrf
             @method('PUT')
             <div class="mb-5">

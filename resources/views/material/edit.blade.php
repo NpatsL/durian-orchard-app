@@ -31,7 +31,7 @@
             <p class="font-bold text-xl">Edit Material</p>
         </div>
 
-        <form action="{{ route('material.update', ['material'=>$material]) }}" method="POST">
+        <form action="{{ route('material.update', ['material'=>$material]) }}" method="POST" onsubmit="return confirm('Are you sure you want to update this material?');">
             @csrf
             @method('PUT')
             <div class="mb-4">

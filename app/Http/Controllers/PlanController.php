@@ -19,9 +19,9 @@ class PlanController extends Controller
         $plan = DB::table('plans')->latest()->first();
         // $plan = Plan::with('tasks')->latest()->first();
         if ($plan != null)
-                // $tasks = Task::where('plan_id', $plan->id)->users->contains(auth()->user())->get();
-          
-                $tasks = Task::where('plan_id', $plan->id)->orderBy('deadline', 'asc')->get();
+            // $tasks = Task::where('plan_id', $plan->id)->users->contains(auth()->user())->get();
+
+            $tasks = Task::where('plan_id', $plan->id)->orderBy('deadline', 'asc')->get();
         else $tasks = null;
         return view('dashboard', ['plan' => $plan, 'tasks' => $tasks, 'users' => $users]);
     }
@@ -72,7 +72,7 @@ class PlanController extends Controller
      */
     public function create(Request $request)
     {
-
+        
         if ($request->number == 1) {
 
             $plan = new Plan();

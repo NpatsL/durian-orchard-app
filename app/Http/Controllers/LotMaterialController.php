@@ -12,7 +12,7 @@ class LotMaterialController extends Controller
      */
     public function index()
     {
-        $lots = LotMaterial::get();
+        $lots = LotMaterial::sortable()->get();
         return view('lot.index',[
             'lots' => $lots
         ]);
