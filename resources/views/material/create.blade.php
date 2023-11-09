@@ -81,14 +81,10 @@
                         {{$message}}
                     </div>
                 @enderror 
-                <li class="text-gray-700 text-sm font-bold mb-2">Lot Material:
-                        <select name="selected_option">
-                        @foreach($lots as $lot)
-                            <option value="{{ $lot->id }}">{{ $lot->date }}</option>
-                        @endforeach
-                        </select>
-                    
-                </li>
+            </div>
+            <div class="mb-4">
+                <label for="date" class="block text-gray-700 text-sm font-bold mb-2">Lot Date:</label>
+                <input type="date" id="date" name="date" autocomplete="off" class="border border-gray-300 shadow p-3 w-full rounded mb-"></li>  
             </div>
             <style>
                 form li{

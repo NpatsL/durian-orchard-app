@@ -34,6 +34,7 @@ class MaterialController extends Controller
      */
     public function create()
     {   $lots = LotMaterial::get();
+        
         return view('material.create',[
             'lots' => $lots
         ]);
@@ -52,13 +53,25 @@ class MaterialController extends Controller
         $material_name = $request->get('name');
         $material_qty = $request->get('qty');
         $material_unit = $request->get('unit');
-        $selectedOption = $_POST['selected_option'];
+        $lot_material_date = $request->get('date');
+        
+        $lot = LotMaterial::where('date',$lot_material_date)->get();
+        if($lot->isEmpty()){
+            $lot_material = new LotMaterial();
+            $lot_material->name = "";
+            $lot_material->date = $lot_material_date;
+            $lot_material->save();
+            $lot_material_id = $lot_material->id;
+        }else{
+
+            $lot_material_id = $lot->first()->id;
+        }
 
         $material = new Material();
         $material->name = $material_name;
         $material->qty = $material_qty;
         $material->unit = $material_unit;
-        $material->lot_material_id = $selectedOption;
+        $material->lot_material_id = $lot_material_id;
         $material->save();
         return redirect()->route('material.index');
     }

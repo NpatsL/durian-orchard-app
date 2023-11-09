@@ -62,12 +62,12 @@
 </x-app-layout> --}}
 <x-app-layout>
     <div class="max-w-5xl mx-auto mt-10 p-4 shadow-md rounded-lg border-t-2 border-teal-400">
-        <div class="flex justify-end items-center">
+        {{-- <div class="flex justify-end items-center">
             <a class="bg-blue-400 hover:bg-blue-600 text-black font-bold py-2 px-4 rounded"
                href="{{route('lot.create')}}">
                 Create New Lot
             </a>
-        </div>
+        </div> --}}
                <!-- Table Section -->
     <div class="w-full px-4 py-4 mx-auto">
         <!-- Card -->
