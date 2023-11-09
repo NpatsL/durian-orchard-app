@@ -14,8 +14,9 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::with('material.lot')->sortable()->get();
-        return view('finances.expense.index', ['expenses' => $expenses]);
+        $expenses = Expense::sortable()->get();
+        $lots = LotMaterial::sortable()->get();
+        return view('finances.expense.index', ['expenses' => $expenses , 'lots' => $lots ]);
     }
 
     /**
