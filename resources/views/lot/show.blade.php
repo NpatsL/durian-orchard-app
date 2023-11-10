@@ -37,7 +37,7 @@
                                 class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200">
                                 <div>
                                     <h2 class="text-xl font-semibold text-gray-800 ">
-                                        Lot {{ $lot->id }} Materials ( {{ $lot->date }} )
+                                        ( {{ $lot->date }} ) Lot {{ $lot->id }} {{ ($lot->name) ? $lot->name : '' }} 
                                     </h2>
                                     <p class="text-sm text-gray-600 ">
                                         List of materials in this lot.
@@ -50,41 +50,9 @@
                             <!-- Table -->
                             <div class=" max-h-[450px] overflow-auto">
                                 <table class="min-w-full divide-y divide-gray-200 ">
-                                    <thead class="bg-gray-50 sticky top-0 z-50">
-                                        <tr>
-
-                                            <th scope="col" class="px-6 py-3 text-start ">
-                                                <div
-                                                    class="flex flex-row text-xs font-semibold uppercase tracking-wide text-gray-800 ">
-                                                    id
-                                                </div>
-                                            </th>
-
-                                            <th scope="col" class="px-6 py-3 text-start">
-                                                <div
-                                                    class="flex flex-row text-xs font-semibold uppercase tracking-wide text-gray-800 ">
-                                                    name
-                                                </div>
-                                            </th>
-
-                                            <th scope="col" class="px-6 py-3 text-start">
-                                                <div
-                                                    class="flex flex-row text-xs font-semibold uppercase tracking-wide text-gray-800 ">
-                                                    qty
-                                                </div>
-                                            </th>
-
-                                            <th scope="col" class="px-6 py-3 text-start">
-                                                <div
-                                                    class="flex flex-row text-xs font-semibold uppercase tracking-wide text-gray-800 ">
-                                                    unit
-                                                </div>
-                                            </th>
-
-                                        </tr>
-                                    </thead>
-
                                     @if (count($lot->materials) === 0)
+                                    
+                                    
                                         <div
                                             class="max-w-sm w-full min-h-[400px] flex flex-col justify-center mx-auto px-6 py-4">
                                             <div
@@ -115,6 +83,40 @@
                                                 </p>
                                             </div>
                                         @else
+                                        <thead class="bg-gray-50 sticky top-0 z-50">
+                                            <tr>
+    
+                                                <th scope="col" class="px-6 py-3 text-start ">
+                                                    <div
+                                                        class="flex flex-row text-xs font-semibold uppercase tracking-wide text-gray-800 ">
+                                                        id
+                                                    </div>
+                                                </th>
+    
+                                                <th scope="col" class="px-6 py-3 text-start">
+                                                    <div
+                                                        class="flex flex-row text-xs font-semibold uppercase tracking-wide text-gray-800 ">
+                                                        name
+                                                    </div>
+                                                </th>
+    
+                                                <th scope="col" class="px-6 py-3 text-start">
+                                                    <div
+                                                        class="flex flex-row text-xs font-semibold uppercase tracking-wide text-gray-800 ">
+                                                        qty
+                                                    </div>
+                                                </th>
+    
+                                                <th scope="col" class="px-6 py-3 text-start">
+                                                    <div
+                                                        class="flex flex-row text-xs font-semibold uppercase tracking-wide text-gray-800 ">
+                                                        unit
+                                                    </div>
+                                                </th>
+    
+                                            </tr>
+                                        </thead>
+    
                                             <tbody class=" divide-gray-200 overflow-scroll h-full">
 
                                                 @foreach ($lot->materials->reverse() as $material)

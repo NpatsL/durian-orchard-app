@@ -31,9 +31,9 @@ class LotMaterialController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name'=>['required'],
-        ]);
+        // $request->validate([
+        //     'name'=>['required'],
+        // ]);
         $name = $request->get('name');
         $date = $request->get('date');
 
@@ -69,9 +69,9 @@ class LotMaterialController extends Controller
      */
     public function update(Request $request, LotMaterial $lot)
     {
-        $request->validate([
-            'name'=>['required'],
-        ]);
+        // $request->validate([
+        //     'name'=>['required'],
+        // ]);
         $lot->name = $request->get('name');
         $lot->save();
         return redirect()->route('lot.show',[

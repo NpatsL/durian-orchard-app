@@ -99,7 +99,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const today = new Date();
-            today.setDate(today.getDate() + 1);
+            // today.setDate(today.getDate() + 1);
             const todayFormatted = today.toISOString().split("T")[0];
             document.getElementById("date").max = todayFormatted;
         });
